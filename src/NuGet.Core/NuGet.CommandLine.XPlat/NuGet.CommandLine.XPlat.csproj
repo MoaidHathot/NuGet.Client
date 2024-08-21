@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>NuGet executable wrapper for the dotnet CLI nuget functionality.</Description>
-    <TargetFramework>$(NETCoreTargetFramework)</TargetFramework>
+    <!--<TargetFramework>net6.0</TargetFramework>-->
+      <TargetFrameworks>net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+
     <NoWarn>$(NoWarn);CS1591;CS1701;NU5104;CA1307;CA2000</NoWarn>
     <OutputType>Exe</OutputType>
     <Shipping>true</Shipping>
@@ -24,7 +26,14 @@
   <!-- <ItemGroup>
     <PackageReference Include="Microsoft.Build.Locator" PrivateAssets="All" />
   </ItemGroup> -->
-
+  <PropertyGroup>
+  <PublishSingleFile>false</PublishSingleFile>
+  <SelfContained>false</SelfContained>
+  <IncludeAllContentForSelfExtract>false</IncludeAllContentForSelfExtract>
+  <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+  <AssemblyName>Nuget.CommandLine.XPlat.NonOfficial.dotnet.nvim</AssemblyName>
+</PropertyGroup>
+  
   <ItemGroup>
     <Compile Remove="external\*" />
     <Compile Update="Commands\Verbs.cs">
@@ -73,5 +82,9 @@
     <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
     <InternalsVisibleTo Include="NuGet.CommandLine.Xplat.Tests" />
     <InternalsVisibleTo Include="NuGet.XPlat.FuncTest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>
